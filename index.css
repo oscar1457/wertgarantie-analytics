@@ -1,0 +1,603 @@
+/* WertGarantie Analytics - Global Styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-background: #F8FAFC;
+  --color-foreground: #0f172a;
+  --color-card: #ffffff;
+  --color-card-border: #e2e8f0;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  --color-accent: #3b82f6;
+  --color-accent-foreground: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Custom scrollbar class used throughout the app */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: #475569 transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Animation classes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
+
+.slide-in-from-right-8 {
+  animation-name: slide-in-from-right;
+}
+
+.zoom-in {
+  animation-name: zoom-in;
+}
+
+.duration-500 {
+  animation-duration: 500ms;
+}
+
+/* High contrast specific adjustments */
+.high-contrast-light,
+.high-contrast-dark {
+  font-weight: 600;
+}
+
+.high-contrast-light .border,
+.high-contrast-dark .border {
+  border-width: 2px;
+}
+
+/* Force all blue classes to use theme colors */
+.bg-blue-600,
+.bg-blue-500,
+.hover\:bg-blue-700:hover {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-blue-50,
+.bg-blue-100 {
+  background-color: var(--color-muted) !important;
+}
+
+.text-blue-600,
+.text-blue-500,
+.text-blue-400 {
+  color: var(--color-primary) !important;
+}
+
+.dark .text-blue-400 {
+  color: var(--color-primary) !important;
+}
+
+.dark .bg-blue-900\/20 {
+  background-color: var(--color-muted) !important;
+}
+
+.ring-blue-300 {
+  --tw-ring-color: color-mix(in srgb, var(--color-primary) 50%, rgb(255, 255, 255)) !important;
+}
+
+/* Force white backgrounds to use card color */
+.bg-white {
+  background-color: var(--color-card) !important;
+}
+
+.dark .bg-slate-800 {
+  background-color: var(--color-card) !important;
+}
+
+.dark .bg-slate-950 {
+  background-color: var(--color-background) !important;
+}
+
+/* Force text colors */
+.text-slate-900 {
+  color: var(--color-foreground) !important;
+}
+
+.dark .text-white {
+  color: var(--color-foreground) !important;
+}
+
+.text-slate-500,
+.text-slate-600 {
+  color: var(--color-muted-foreground) !important;
+}
+
+.dark .text-slate-400 {
+  color: var(--color-muted-foreground) !important;
+}
+
+/* Sidebar active state */
+.bg-blue-50.dark\:bg-blue-900\/20 {
+  background-color: var(--color-muted) !important;
+}
+
+/* Borders */
+.border-slate-100 {
+  border-color: var(--color-card-border) !important;
+}
+
+.dark .border-slate-700 {
+  border-color: var(--color-card-border) !important;
+}
+
+.bg-slate-50 {
+  background-color: var(--color-muted) !important;
+}
+
+.dark .bg-slate-700 {
+  background-color: var(--color-card) !important;
+}
+
+/* React Grid Layout Styles */
+.react-grid-layout {
+  position: relative;
+  transition: height 200ms ease;
+}
+
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top, width, height;
+}
+
+.react-grid-item img {
+  pointer-events: none;
+  user-select: none;
+}
+
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+.react-grid-item > .react-resizable-handle::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 5px;
+  height: 5px;
+  border-right: 2px solid rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.dark .react-grid-item > .react-resizable-handle::after {
+  border-right-color: rgba(255, 255, 255, 0.4);
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-sw {
+  bottom: 0;
+  left: 0;
+  cursor: sw-resize;
+  transform: rotate(90deg);
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-se {
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-nw {
+  top: 0;
+  left: 0;
+  cursor: nw-resize;
+  transform: rotate(180deg);
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-ne {
+  top: 0;
+  right: 0;
+  cursor: ne-resize;
+  transform: rotate(270deg);
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-w,
+.react-grid-item > .react-resizable-handle.react-resizable-handle-e {
+  top: 50%;
+  margin-top: -10px;
+  cursor: ew-resize;
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-w {
+  left: 0;
+  transform: rotate(135deg);
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-e {
+  right: 0;
+  transform: rotate(315deg);
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-n,
+.react-grid-item > .react-resizable-handle.react-resizable-handle-s {
+  left: 50%;
+  margin-left: -10px;
+  cursor: ns-resize;
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-n {
+  top: 0;
+  transform: rotate(225deg);
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-s {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+.react-grid-item.cssTransforms {
+  transition-property: transform, width, height;
+}
+
+.react-grid-item.resizing {
+  transition: none;
+  z-index: 100;
+  will-change: width, height;
+}
+
+.react-grid-item.react-draggable-dragging {
+  transition: none;
+  z-index: 100;
+  will-change: transform;
+}
+
+.react-grid-item.dropping {
+  visibility: hidden;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background: var(--color-primary);
+  opacity: 0.2;
+  transition-duration: 100ms;
+  z-index: 2;
+  border-radius: 8px;
+  user-select: none;
+}
+
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+}
+
+.react-grid-item > .react-resizable-handle::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 8px;
+  height: 8px;
+  border-right: 3px solid var(--color-primary);
+  border-bottom: 3px solid var(--color-primary);
+  border-radius: 0 0 2px 0;
+}
+
+/* Alto contraste: forzar contraste en botones */
+.high-contrast-dark button:not(:disabled),
+.high-contrast-dark .btn {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #ffffff !important;
+}
+
+.high-contrast-dark button:not(:disabled):hover,
+.high-contrast-dark .btn:hover {
+  background-color: #e5e5e5 !important;
+}
+
+/* Alto contraste: forzar contraste en iconos y spans dentro de botones */
+.high-contrast-dark button:not(:disabled) svg,
+.high-contrast-dark button:not(:disabled) span,
+.high-contrast-dark .btn svg,
+.high-contrast-dark .btn span {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+.high-contrast-light button:not(:disabled),
+.high-contrast-light .btn {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #000000 !important;
+}
+
+.high-contrast-light button:not(:disabled):hover,
+.high-contrast-light .btn:hover {
+  background-color: #1a1a1a !important;
+}
+
+/* Alto contraste: forzar contraste en iconos y spans dentro de botones */
+.high-contrast-light button:not(:disabled) svg,
+.high-contrast-light button:not(:disabled) span,
+.high-contrast-light .btn svg,
+.high-contrast-light .btn span {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Alto contraste Hell: Oscurecer un poco el fondo general de la página */
+.high-contrast-light {
+  --color-background: #e8e8e8 !important;
+}
+
+.high-contrast-light body {
+  background-color: #e8e8e8 !important;
+}
+
+/* Alto contraste Hell: Hacer texto más oscuro para buen contraste */
+.high-contrast-light .text-slate-400,
+.high-contrast-light .text-slate-500,
+.high-contrast-light .text-slate-600,
+.high-contrast-light .text-slate-700,
+.high-contrast-light table td,
+.high-contrast-light table th {
+  color: #1a1a1a !important;
+}
+
+/* ========================================
+   CONFIGURACIÓN POR TEMA INDIVIDUAL
+   ======================================== */
+
+/* TEMA: LIGHT (Claro) */
+.light table td,
+.light table th {
+  color: #0f172a !important;
+}
+
+.light .bg-slate-200 {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.light .bg-slate-200 span,
+.light .bg-slate-200 svg {
+  color: #0f172a !important;
+  stroke: #0f172a !important;
+}
+
+/* TEMA: DARK (Oscuro) */
+.dark table td,
+.dark table th {
+  color: #f8fafc !important;
+}
+
+.dark .bg-slate-200 {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+.dark .bg-slate-200 span,
+.dark .bg-slate-200 svg {
+  color: #f8fafc !important;
+  stroke: #f8fafc !important;
+}
+
+/* TEMA: BLUE (Azul) */
+.blue table td,
+.blue table th {
+  color: #0c4a6e !important;
+}
+
+.blue .bg-slate-200 {
+  background-color: #bae6fd !important;
+  color: #0c4a6e !important;
+}
+
+.blue .bg-slate-200 span,
+.blue .bg-slate-200 svg {
+  color: #0c4a6e !important;
+  stroke: #0c4a6e !important;
+}
+
+/* TEMA: PURPLE (Púrpura/Lila) */
+.purple table td,
+.purple table th {
+  color: #581c87 !important;
+}
+
+.purple .bg-slate-200 {
+  background-color: #e9d5ff !important;
+  color: #581c87 !important;
+}
+
+.purple .bg-slate-200 span,
+.purple .bg-slate-200 svg {
+  color: #581c87 !important;
+  stroke: #581c87 !important;
+}
+
+/* TEMA: GREEN (Verde) */
+.green table td,
+.green table th {
+  color: #064e3b !important;
+}
+
+.green .bg-slate-200 {
+  background-color: #bbf7d0 !important;
+  color: #064e3b !important;
+}
+
+.green .bg-slate-200 span,
+.green .bg-slate-200 svg {
+  color: #064e3b !important;
+  stroke: #064e3b !important;
+}
+
+/* TEMA: HIGH CONTRAST LIGHT (Alto Contraste Claro) */
+.high-contrast-light table td,
+.high-contrast-light table th {
+  color: #1a1a1a !important;
+}
+
+.high-contrast-light .bg-slate-200 {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.high-contrast-light .bg-slate-200 span,
+.high-contrast-light .bg-slate-200 svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* TEMA: HIGH CONTRAST DARK (Alto Contraste Oscuro) */
+.high-contrast-dark table td,
+.high-contrast-dark table th {
+  color: #ffffff !important;
+}
+
+.high-contrast-dark .bg-slate-200 {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.high-contrast-dark .bg-slate-200 span,
+.high-contrast-dark .bg-slate-200 svg {
+  color: #000000 !important;
+  stroke: #000000 !important;
+}
+
+/* Alto contraste Hell: Hacer el icono de rayo blanco */
+.high-contrast-light [class*="lucide-zap"] {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Alto contraste Dunkel: Corregir escudo del logo */
+.high-contrast-dark .bg-blue-600 {
+  background-color: #000000 !important;
+}
+
+.high-contrast-dark .bg-blue-600 svg {
+  color: #ffffff !important;
+}
+
+.dashboard-widget {
+  height: 100%;
+}
+
+.dashboard-widget > div {
+  height: 100%;
+}
+
+/* Prevent scroll jump during drag */
+.react-grid-layout {
+  position: relative;
+}
+
+.react-grid-item.react-grid-placeholder {
+  will-change: transform;
+}
+
+.react-grid-item.react-draggable-dragging {
+  will-change: transform;
+  z-index: 100;
+}
+
+/* Smooth dragging */
+.react-grid-item {
+  transition: none !important;
+}
+
+.react-grid-item.cssTransforms {
+  transition-property: none;
+}
