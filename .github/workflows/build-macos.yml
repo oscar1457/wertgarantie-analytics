@@ -10,7 +10,16 @@ jobs:
   build-macos:
     permissions:
       contents: write
-    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: 'macos-latest' # ARM64 (Apple Silicon)
+            args: '--target aarch64-apple-darwin'
+          - platform: 'macos-13'     # x86_64 (Intel)
+            args: '--target x86_64-apple-darwin'
+
+    runs-on: ${{ matrix.platform }}
 
     steps:
       - name: Checkout repository
@@ -23,29 +32,28 @@ jobs:
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-13' && 'x86_64-apple-darwin' || 'aarch64-apple-darwin' }}
 
-      - name: Install dependencies (ubuntu-only usually, but good practice to verify)
-        # macOS runners usually have these, but strictly speaking webkit2gtk is linux.
-        # For macOS we mainly need the XCode command line tools which are pre-installed.
-        # We will run npm install.
-        run: |
-          npm install
+      - name: Install dependencies
+        run: npm install
 
       - name: Build Tauri App
         uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tagName: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+          tagName: app-v__VERSION__
           releaseName: 'App v__VERSION__'
           releaseBody: 'See the assets to download this version and install.'
           releaseDraft: true
           prerelease: false
+          args: ${{ matrix.args }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: macOS App
+          name: macOS App (${{ matrix.platform }})
           path: |
             src-tauri/target/release/bundle/dmg/*.dmg
             src-tauri/target/release/bundle/macos/*.app
